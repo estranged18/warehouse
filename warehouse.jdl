@@ -1,0 +1,40 @@
+
+entity Product {
+    productId Long required
+	name String required 
+}
+
+entity Store {
+	name String required
+    address String required
+}
+
+entity Owner {
+	name String required
+}
+
+entity Fornitor {
+	name String required
+}
+
+
+//{store} e' il nome della relazione da parte di Owner
+//{owner} e' il nome della relazione da parte di store
+relationship OneToMany {
+	//un negozio ha solo un proprietario
+    //un proprietario puo' possedere piu' negozi
+	Owner{store} to Store{owner} 
+}
+
+relationship ManyToMany{
+	//un prodotto puo' trovarsi in molti negozi
+    //molti negozi possono avere lo stesso prodotto
+	Product{store} to Store{products} 
+}
+
+relationship OneToMany{
+	//un negozio puo' avere un solo fornitore
+    //un fornitore puo' rifornire piu' negozi
+    Fornitor{store} to Store{fornitor}
+}
+
