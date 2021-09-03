@@ -313,10 +313,19 @@
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
     </dependencies>
+	
+	<scm> <!-- AGGIUNTO SCM -->
+		<developerConnection>scm:git:https://github.com/estranged18/warehouse</developerConnection>
+	</scm>
 
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
+		    <plugin> <!-- AGGIUNTO PLUGIN RELEASE -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>3.0.0-M4</version>
+			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -381,6 +390,11 @@
         </plugins>
         <pluginManagement>
             <plugins>
+				<plugin> <!-- AGGIUNTO PLUGIN RELEASE -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>3.0.0-M4</version>
+				</plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
