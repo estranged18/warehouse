@@ -334,6 +334,11 @@
 				<artifactId>maven-release-plugin</artifactId>
 				<version>3.0.0-M4</version>
 			</plugin>
+			<plugin> <!-- AGGIUNTO PLUGIN DEPLOY -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>3.0.0-M1</version>
+			</plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -402,6 +407,11 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
 					<version>3.0.0-M4</version>
+				</plugin>
+				<plugin> <!-- AGGIUNTO PLUGIN DEPLOY -->
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>3.0.0-M1</version>
 				</plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
