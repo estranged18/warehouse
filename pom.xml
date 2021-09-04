@@ -20,6 +20,14 @@
     </pluginRepositories>
 
     <!-- jhipster-needle-distribution-management -->
+	<!-- AGGIUNTO PER IL DEPLOY -->
+	<distributionManagement>
+		<repository>
+		  <id>github</id>
+		  <name>GitHub Packages</name>
+		  <url>https://github.com/estranged18/warehouse</url>
+		</repository>
+	</distributionManagement>
 
     <properties>
         <!-- Build properties -->
