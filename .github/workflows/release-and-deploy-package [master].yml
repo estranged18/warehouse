@@ -64,7 +64,7 @@ jobs:
           wait-on-timeout: 150
   
   release:
-    #needs: cypress-run
+    needs: cypress-run
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
