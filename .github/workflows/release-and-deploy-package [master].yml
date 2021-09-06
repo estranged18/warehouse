@@ -82,4 +82,6 @@ jobs:
           draft: false
           prerelease: false
       - name: Deploy package
-        run: mvn deploy          
+        run: mvn deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
