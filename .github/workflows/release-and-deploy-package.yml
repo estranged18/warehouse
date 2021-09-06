@@ -1,0 +1,25 @@
+name: release new version
+
+# push e' l'evento che triggera il workflow
+on:
+  push:
+    branches: [ release ]
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Create release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        with: # DA MODIFICARE OGNI RILASCIO!
+          tag_name: 0.0.1-SNAPSHOT
+          release_name: Warehouse 0.0.1-SNAPSHOT
+          body: |
+            Changes in this Release
+            - First release of the project.
+          draft: false
+          prerelease: false
+      - name: Deploy package
+        run: mvn deploy
