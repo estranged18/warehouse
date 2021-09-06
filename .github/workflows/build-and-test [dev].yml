@@ -6,7 +6,7 @@ name: Java CI with Maven
 # push e' l'evento che triggera il workflow
 on:
   push:
-    branches: [ master ]
+    branches: [ dev ]
     
 jobs:
 # jobs raggruppa un insieme di azioni che verranno eseguite

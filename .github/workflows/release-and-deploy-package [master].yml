@@ -1,0 +1,65 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+# push e' l'evento che triggera il workflow
+on:
+  push:
+    branches: [ master ]
+  pull_request: 
+    branches: [ master ]
+    
+jobs:
+# jobs raggruppa un insieme di azioni che verranno eseguite
+# Ogni job viene eseguito su un server diverso di GitHub
+  build:
+    # uses: serve per selezionare una azione
+    # run: serve per eseguire un comando sulla command-line
+    # effettuo il build sull'ultima versione di ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2 # effettua il checkout della repository
+    - name: Set up JDK 16
+      uses: actions/setup-java@v2 # prepara l'enviroment con Java versione 11
+      with: # condizioni
+        java-version: '16'
+        distribution: 'adopt'
+        cache: maven
+    - name: Build with Maven
+      run: mvn -B package
+
+  unit-test:
+    # test di unita' lanciati con Jest
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+          # anche qua setto l'ambiente java 11
+        - name: Set up Node
+          uses: actions/setup-node@v2
+          with:
+            node-version: '14'
+            #cache: 'npm' # caching delle dipendenze    
+        - run: npm install
+        - name: Run test with Jest
+          run: npm test
+      
+  cypress-run:
+    needs: unit-test
+    # effettuo un test end-to-end con cypress
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: mvn
+          wait-on: 'http://localhost:8080'
+          browser: chrome
+          headless: true
+          wait-on-timeout: 150
+          
