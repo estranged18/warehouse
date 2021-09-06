@@ -77,7 +77,7 @@ jobs:
           tag_name: 0.0.1-SNAPSHOT
           release_name: Warehouse 0.0.1-SNAPSHOT
           body: |
-            Changes in this Release
+            Change in this release
             - First release of the project.
           draft: false
           prerelease: false
