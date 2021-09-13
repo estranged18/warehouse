@@ -21,7 +21,6 @@ jobs:
   # adeguato. Questi test non richiedono che il codice sia impacchettato o distribuito
   # per i test viene utilizzato il plugin "maven surefire" (vedi pom.xml).
   compile-and-test:
-    needs: build
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # effettua il checkout della repository
