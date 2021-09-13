@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # effettua il checkout della repository
     - name: Set up JDK 16
-      uses: actions/setup-java@v2 # prepara l'enviroment con Java versione 11
+      uses: actions/setup-java@v2 # prepara l'enviroment con Java versione 16
       with: # condizioni
         java-version: '16'
         distribution: 'adopt'
@@ -41,7 +41,7 @@ jobs:
     steps:
         - name: Checkout
           uses: actions/checkout@v2
-          # anche qua setto l'ambiente java 11
+          # anche qua setto l'ambiente java 16
         - name: Set up Node
           uses: actions/setup-node@v2
           with:
@@ -58,7 +58,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # effettua il checkout della repository
     - name: Set up JDK 16
-      uses: actions/setup-java@v2 # prepara l'enviroment con Java versione 11
+      uses: actions/setup-java@v2 # prepara l'enviroment con Java versione 16
       with: # condizioni
         java-version: '16'
         distribution: 'adopt'
@@ -90,7 +90,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2 # effettua il checkout della repository
     - name: Set up JDK 16
-      uses: actions/setup-java@v2 # prepara l'enviroment con Java versione 11
+      uses: actions/setup-java@v2 # prepara l'enviroment con Java versione 16
       with: # condizioni
         java-version: '16'
         distribution: 'adopt'
