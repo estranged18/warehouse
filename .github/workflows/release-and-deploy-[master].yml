@@ -1,0 +1,38 @@
+name: Release and publish Docker image
+
+on: 
+  workflow_dispatch:
+    branches: [ master]
+    
+jobs: 
+
+  release:
+    needs: cypress-run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Create new release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        with: # DA MODIFICARE OGNI RILASCIO!
+          tag_name: 0.0.1-SNAPSHOT
+          release_name: Warehouse 0.0.1-SNAPSHOT
+          body: |
+            Change in this release
+            - First release of the project.
+          draft: false
+          prerelease: false
+      - name: Set up JDK 16
+        uses: actions/setup-java@v2
+        with:
+          java-version: '16'
+          distribution: 'adopt'
+      - name: Deploy package
+        run: mvn -B deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
+          
+  # crea l'immagine Docker dell'applicazione e la carica su registry di Docker
+  

@@ -12,7 +12,7 @@ const commonConfig = require('./webpack.common.js');
 const ENV = 'production';
 
 module.exports = webpackMerge(commonConfig({ env: ENV }), {
-  // devtool: 'source-map', // Enable source maps. Please note that this will slow down the build
+  //devtool: 'source-map', // Enable source maps. Please note that this will slow down the build
   mode: ENV,
   entry: {
     main: './src/main/webapp/app/index',
@@ -53,7 +53,7 @@ module.exports = webpackMerge(commonConfig({ env: ENV }), {
     minimizer: [
       new TerserPlugin({
         parallel: true,
-        // sourceMap: true, // Enable source maps. Please note that this will slow down the build
+        //sourceMap: true, // Enable source maps. Please note that this will slow down the build
         terserOptions: {
           ecma: 6,
           toplevel: true,
