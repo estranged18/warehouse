@@ -24,14 +24,11 @@ jobs:
         id: buildx
         uses: docker/setup-buildx-action@v1
 
+        # non uso l'action: docker/build-push-action@v2, perche'
+        # jhipster costruisce l'immagine docker con jdb e non piu'
+        # utilizzando il Dockerfile.
       - name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          context: ./
-          file: ./Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/warehouse:latest
+        run: ./mvnw package -Pprod verify jib:build
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
