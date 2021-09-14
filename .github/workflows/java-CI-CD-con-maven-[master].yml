@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java CI with Maven [master]
+name: Java CI/CD with Maven [master]
 
 # push e' l'evento che triggera il workflow
 on:
@@ -99,11 +99,21 @@ jobs:
       run: mvn verify
       # **NB**: mvn verify esegue preventivamente 'validate', 'compile', 
       # e 'package'. Quindi sarebbe come lanciare questi tre comandi in sequenza.
-      
-      
-      
-    # deploy su Docker.
-    #
-    #
-    #
-    # ...
+       
+  # deploy dell'immagine su Docker-hub.
+  build-docker-image:
+    runs-on: ubuntu-latest
+    needs: maven-integration-test
+    steps:  
+      - name: Check Out Repo 
+        uses: actions/checkout@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        # non uso l'action: docker/build-push-action@v2, perche'
+        # jhipster costruisce l'immagine docker con jdb e non piu'
+        # utilizzando il Dockerfile.
+      - name: Build and push
+        run: mvn compile jib:build -Djib.to.image=estranged18/warehouse:latest -Djib.to.auth.username=${{ secrets.DOCKER_HUB_USERNAME }} -Djib.to.auth.password=${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
