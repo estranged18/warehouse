@@ -85,7 +85,7 @@ jobs:
   # mvn verify: esegue i controlli sui risultati degli integration test per
   # assicurare il rispetto dei criteri di qualita' 
   maven-integration-test:
-    needs: [maven-compile-and-test, cypress-e2e-test, build, npm-test]
+    needs: [maven-compile-and-test, cypress-e2e-test, maven-build, npm-test]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # effettua il checkout della repository
