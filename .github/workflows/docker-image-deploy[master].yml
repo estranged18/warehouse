@@ -21,4 +21,4 @@ jobs:
         # jhipster costruisce l'immagine docker con jdb e non piu'
         # utilizzando il Dockerfile.
       - name: Build and push
-        run: mvn compile jib:build
+        run: mvn compile jib:build -Djib.to.image=estranged18/warehouse:latest -Djib.to.auth.username=${{ secrets.DOCKER_HUB_USERNAME }} -Djib.to.auth.password=${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
