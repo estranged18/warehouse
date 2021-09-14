@@ -21,4 +21,4 @@ jobs:
         # jhipster costruisce l'immagine docker con jdb e non piu'
         # utilizzando il Dockerfile.
       - name: Build and push
-        run: mvn package -Pprod verify jib:build
+        run: mvn compile jib:build
