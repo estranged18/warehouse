@@ -36,7 +36,7 @@ jobs:
 
   # npm test: test di unita' lanciati con Jest
   npm-test:
-    needs: compile-and-test
+    needs: maven-compile-and-test
     runs-on: ubuntu-latest
     steps:
         - name: Checkout
@@ -53,7 +53,7 @@ jobs:
      
   #mvn package: effettua il build del codice compilato e crea il .jar eseguibile.  
   maven-build:
-    needs: compile-and-test
+    needs: maven-compile-and-test
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # effettua il checkout della repository
@@ -68,7 +68,7 @@ jobs:
           
   # npm run e2e: effettua un test end-to-end con cypress.
   cypress-e2e-test:
-    needs: compile-and-test
+    needs: maven-compile-and-test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -85,7 +85,7 @@ jobs:
   # mvn verify: esegue i controlli sui risultati degli integration test per
   # assicurare il rispetto dei criteri di qualita' 
   maven-integration-test:
-    needs: [compile-and-test, cypress-e2e-test, build, npm-test]
+    needs: [maven-compile-and-test, cypress-e2e-test, build, npm-test]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2 # effettua il checkout della repository
