@@ -2,6 +2,7 @@
 version: '3.8'
 services:
   warehouse-app:
+    container_name: warehouse
     image: estranged18/warehouse
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
@@ -14,18 +15,36 @@ services:
     # remove the "127.0.0.1:" prefix
     ports:
       - 8080:8080 #a sinistra la HOST PORT, a destra la CONTAINER PORT
+      
   warehouse-postgresql:
+    container_name: postgresSQL 
     image: postgres:13.3
-    # volumes:
-    #   - ~/volumes/jhipster/warehouse/postgresql/:/var/lib/postgresql/data/
+     volumes: # persistenza dati
+       - ~/volumes/jhipster/warehouse/postgresql/:/var/lib/postgresql/data/
     environment:
+      - POSTGRES_DB = warehouseDB
       - POSTGRES_USER=warehouse
       - POSTGRES_PASSWORD=
-      - POSTGRES_HOST_AUTH_METHOD=trust
+        # accetta tutte le connessioni senza password, da togliere
+      - POSTGRES_HOST_AUTH_METHOD=trust 
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
       - 5432:5432 # da rimuovere quando aggiungo PgAdmin
+  
+  # pgadmin for managing postgis db (runs at localhost:5050)
+  # To add the above postgres server to pgadmin, use hostname as defined by docker: 'postgres'
+  pgadmin:
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin
+      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_LISTEN_PORT=5050
+    ports:
+      - "5050:5050"
+      
 
 
-    # aggiungere GUI PgAdmin
+  
