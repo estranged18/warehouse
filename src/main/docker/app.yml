@@ -3,7 +3,7 @@ version: '3.8'
 services:
   warehouse-app:
     container_name: warehouse
-    image: estranged18/warehouse
+    image: estranged18/warehouse:latest
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,api-docs
@@ -14,19 +14,22 @@ services:
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
-      - 8080:8080 #a sinistra la HOST PORT, a destra la CONTAINER PORT
+      - 8080:8080 # a sinistra la HOST PORT, a destra la CONTAINER PORT
       
   warehouse-postgresql:
-    container_name: postgresSQL 
-    image: postgres:13.3
-     volumes: # persistenza dati
-       - ~/volumes/jhipster/warehouse/postgresql/:/var/lib/postgresql/data/
+    container_name: postgreSQL 
+    image: postgres:latest
     environment:
-      - POSTGRES_DB = warehouseDB
       - POSTGRES_USER=warehouse
       - POSTGRES_PASSWORD=
         # accetta tutte le connessioni senza password, da togliere
       - POSTGRES_HOST_AUTH_METHOD=trust 
+        # PGDATA indica al server PostgreSQL di salvare i dati in quel percorso
+      - PGDATA=/var/lib/postgresql/data/
+    # volumes serve per la persistenza dati
+    volumes: 
+    #  - ~/volumes/jhipster/warehouse/postgresql/:/var/lib/postgresql/data/
+      - warehouse-postgresql-data:/var/lib/postgresql/data/
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
     ports:
@@ -35,16 +38,23 @@ services:
   # pgadmin for managing postgis db (runs at localhost:5050)
   # To add the above postgres server to pgadmin, use hostname as defined by docker: 'postgres'
   pgadmin:
-  pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4
+    image: dpage/pgadmin4:latest
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin
-      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_EMAIL=pgadmin4@pgadmin.org 
+      - PGADMIN_PASSWORD=admin
       - PGADMIN_LISTEN_PORT=5050
+    volumes: 
+    #  - ~/volumes/jhipster/warehouse/postgresql/:/var/lib/postgresql/data/
+      - pgadmin-data:/var/lib/postgresql/data/
     ports:
-      - "5050:5050"
+      - 5050:5050
+    links: 
+      - warehouse-postgresql:pgsql-server
       
-
+volumes:
+  warehouse-postgresql-data:
+  pgadmin-data:
+  
 
   
