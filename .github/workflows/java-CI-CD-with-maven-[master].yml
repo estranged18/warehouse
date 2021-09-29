@@ -20,7 +20,9 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
       - name: Generate deployment package
-        run: zip -r v0.0.2-SNAP.zip eb-deploy/Procfile eb-deploy/warehouse-0.0.2-SNAPSHOT.jar
+      - name: prod verify
+        run: mvn -Pprod verify
+        run: zip -r v0.0.2-SNAP.zip Procfile warehouse-0.0.2-SNAPSHOT.jar
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v18
         with:
