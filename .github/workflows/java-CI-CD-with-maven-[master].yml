@@ -119,7 +119,7 @@ jobs:
         run: mvn compile jib:build -Djib.to.image=estranged18/warehouse:latest -Djib.to.auth.username=${{ secrets.DOCKER_HUB_USERNAME }} -Djib.to.auth.password=${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
   
   # deploy su Amazon Elastic Beanstalk  
-  Elastic-Beanstalk-Deployment:
+  elastic-beanstalk-deployment:
     runs-on: ubuntu-latest
     needs: maven-integration-test
     steps: 
@@ -135,5 +135,5 @@ jobs:
           application_name: warehouse1
           environment_name: Warehouse1-env
           version_label: 0.0.2-SNAPSHOT
-          region: us-west-1
+          region: eu-west-1
           deployment_package: 0.0.2-SNAP.zip
