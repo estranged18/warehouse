@@ -128,9 +128,10 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v2
       - name: Generate Jar with 'prod' profile
-        run: mvn -Pprod package
+        run: mvn -Pprod install -DskipTests=true # evito di ripetere nuovamente i test
+        # SCRIVERE LA VERSIONE GIUSTA PRIMA DEL PUSH SU GITHUB
       - name: Generate deployment package
-        run: zip -j v0.0.3-SNAP.zip Procfile target/warehouse-0.0.2-SNAPSHOT.jar
+        run: zip -j v0.0.3-SNAP.zip Procfile target/warehouse-0.0.3-SNAPSHOT.jar
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v18
         with:
