@@ -135,5 +135,5 @@ jobs:
           application_name: warehouse1
           environment_name: Warehouse1-env
           version_label: 0.0.2-SNAPSHOT
-          region: us-west-1
+          region: eu-west-1
           deployment_package: 0.0.2-SNAP.zip
