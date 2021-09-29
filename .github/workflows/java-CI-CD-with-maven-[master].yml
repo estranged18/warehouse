@@ -117,3 +117,23 @@ jobs:
         # utilizzando il Dockerfile.
       - name: Build and push
         run: mvn compile jib:build -Djib.to.image=estranged18/warehouse:latest -Djib.to.auth.username=${{ secrets.DOCKER_HUB_USERNAME }} -Djib.to.auth.password=${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+  
+  # deploy su Amazon Elastic Beanstalk  
+  Elastic-Beanstalk-Deployment:
+    runs-on: ubuntu-latest
+    needs: maven-integration-test
+    steps: 
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      - name: Generate deployment package
+        run: zip -r 0.0.2-SNAP.zip eb-deploy
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v18
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: warehouse1
+          environment_name: Warehouse1-env
+          version_label: 0.0.2-SNAPSHOT
+          region: us-west-1
+          deployment_package: 0.0.2-SNAP.zip

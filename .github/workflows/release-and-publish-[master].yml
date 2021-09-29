@@ -7,7 +7,6 @@ on:
 jobs: 
 
   release:
-    needs: cypress-run
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
