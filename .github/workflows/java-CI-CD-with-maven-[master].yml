@@ -127,6 +127,8 @@ jobs:
     steps: 
       - name: Checkout source code
         uses: actions/checkout@v2
+      - name: Generate Jar with 'prod' profile
+        run: mvn -Pprod package
       - name: Generate deployment package
         run: zip -j v0.0.3-SNAP.zip Procfile target/warehouse-0.0.2-SNAPSHOT.jar
       - name: Deploy to EB
