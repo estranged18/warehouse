@@ -32,4 +32,4 @@ jobs:
           environment_name: Warehouse1-env
           version_label: 0.0.2-SNAPSHOT
           region: eu-west-1
-          deployment_package: 0.0.2-SNAP.zip
+          deployment_package: v0.0.2-SNAP.zip
