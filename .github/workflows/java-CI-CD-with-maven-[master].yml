@@ -132,7 +132,7 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: warehouse1
+          application_name: warehouse
           environment_name: Warehouse1-env
           version_label: 0.0.2-SNAPSHOT
           region: us-west-1
