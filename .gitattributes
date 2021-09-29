@@ -3,10 +3,8 @@
 # Auto detect text files and perform LF normalization
 # http://davidlaing.com/2012/09/19/customise-your-gitattributes-to-become-a-git-ninja/
 * text=auto
-
 # The above will handle all files NOT found below
 # These files are text and should be normalized (Convert crlf => lf)
-
 *.bat           text eol=crlf
 *.cmd           text eol=crlf
 *.ps1           text eol=crlf
@@ -30,7 +28,6 @@
 *.xml           text
 *.yaml          text
 *.yml           text
-
 # Documents
 *.doc           diff=astextplain
 *.DOC           diff=astextplain
@@ -65,7 +62,6 @@ NEWS            text
 readme          text
 *README*        text
 TODO            text
-
 # Graphics
 *.png           binary
 *.jpg           binary
@@ -79,13 +75,11 @@ TODO            text
 *.svg           binary
 #*.svg          text
 *.eps           binary
-
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)
 *.class         binary
 *.jar           binary
 *.war           binary
-
 ## LINTERS
 .csslintrc      text
 .eslintrc       text
@@ -93,7 +87,6 @@ TODO            text
 .jshintrc       text
 .jshintignore   text
 .stylelintrc    text
-
 ## CONFIGS
 *.conf          text
 *.config        text
@@ -103,11 +96,9 @@ TODO            text
 .gitignore      text
 .htaccess       text
 *.npmignore     text
-
 ## HEROKU
 Procfile        text
 .slugignore     text
-
 ## AUDIO
 *.kar           binary
 *.m4a           binary
@@ -116,7 +107,6 @@ Procfile        text
 *.mp3           binary
 *.ogg           binary
 *.ra            binary
-
 ## VIDEO
 *.3gpp          binary
 *.3gp           binary
@@ -134,17 +124,16 @@ Procfile        text
 *.swc           binary
 *.swf           binary
 *.webm          binary
-
 ## ARCHIVES
 *.7z            binary
 *.gz            binary
 *.rar           binary
 *.tar           binary
 *.zip           binary
-
 ## FONTS
 *.ttf           binary
 *.eot           binary
 *.otf           binary
 *.woff          binary
 *.woff2         binary
+.jar filter=lfs diff=lfs merge=lfs -text
