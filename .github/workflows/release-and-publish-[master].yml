@@ -16,11 +16,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with: # DA MODIFICARE OGNI RILASCIO!
-          tag_name: 0.0.5-SNAPSHOT
-          release_name: Warehouse 0.0.5-SNAPSHOT
+          tag_name: 0.0.6-SNAPSHOT
+          release_name: Warehouse 0.0.6-SNAPSHOT
           body: |
             Change in this release
-            - The application is now running on AWS.
+            - Changed the 'wait_for_environment_recovery' from 30 seconds, to 60 seconds.
             - link: http://warehouse-dev.eba-kmvc9yxy.eu-west-1.elasticbeanstalk.com/
           draft: false
           prerelease: false

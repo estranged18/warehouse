@@ -1,1 +1,1 @@
-web: java -jar -Dserver.port=5000 -Dspring.datasource.url=jdbc:postgresql://aa17rjcj1t7poul.cbnyigkjec4h.eu-west-1.rds.amazonaws.com:5432/ebdb -Dspring.datasource.username=lucac -Dspring.datasource.password=lucacpassword warehouse-0.0.5-SNAPSHOT.jar
+web: java -jar -Dserver.port=5000 -Dspring.datasource.url=jdbc:postgresql://aa17rjcj1t7poul.cbnyigkjec4h.eu-west-1.rds.amazonaws.com:5432/ebdb -Dspring.datasource.username=lucac -Dspring.datasource.password=lucacpassword warehouse-0.0.6-SNAPSHOT.jar

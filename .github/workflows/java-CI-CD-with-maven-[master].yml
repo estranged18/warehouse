@@ -131,7 +131,7 @@ jobs:
         run: mvn -Pprod install -DskipTests=true # evito di ripetere nuovamente i test
         # SCRIVERE LA VERSIONE GIUSTA PRIMA DEL PUSH SU GITHUB
       - name: Generate deployment package
-        run: zip -j v0.0.5-SNAP.zip Procfile target/warehouse-0.0.5-SNAPSHOT.jar
+        run: zip -j v0.0.6-SNAP.zip Procfile target/warehouse-0.0.6-SNAPSHOT.jar
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v18
         with:
@@ -139,6 +139,7 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: warehouse
           environment_name: warehouse-dev
-          version_label: v0.0.5-SNAPSHOT
+          version_label: v0.0.6-SNAPSHOT
           region: eu-west-1
-          deployment_package: v0.0.5-SNAP.zip
+          deployment_package: v0.0.6-SNAP.zip
+          wait_for_environment_recovery: 60
