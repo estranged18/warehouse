@@ -17,10 +17,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with: # DA MODIFICARE OGNI RILASCIO!
           tag_name: 0.0.6-SNAPSHOT
-          release_name: Warehouse 0.0.6-SNAPSHOT
+          release_name: Warehouse 0.0.7-SNAPSHOT
           body: |
             Change in this release
-            - Changed the 'wait_for_environment_recovery' from 30 seconds, to 60 seconds.
+            - Changed the 'wait_for_environment_recovery' from 60 seconds, to 180 seconds.
+            - Replaced sensitive data in the Procfile with environment variables.
             - link: http://warehouse-dev.eba-kmvc9yxy.eu-west-1.elasticbeanstalk.com/
           draft: false
           prerelease: false
