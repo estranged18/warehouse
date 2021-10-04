@@ -16,7 +16,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with: # DA MODIFICARE OGNI RILASCIO!
-          tag_name: 0.0.6-SNAPSHOT
+          tag_name: 0.0.7-SNAPSHOT
           release_name: Warehouse 0.0.7-SNAPSHOT
           body: |
             Change in this release
