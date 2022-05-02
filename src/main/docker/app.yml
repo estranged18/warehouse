@@ -41,8 +41,8 @@ services:
     container_name: pgadmin
     image: dpage/pgadmin4:latest
     environment:
-      - PGADMIN_EMAIL=pgadmin4@pgadmin.org 
-      - PGADMIN_PASSWORD=admin
+      - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org 
+      - PGADMIN_DEFAULT_PASSWORD=admin
       - PGADMIN_LISTEN_PORT=5050
     volumes: 
     #  - ~/volumes/jhipster/warehouse/postgresql/:/var/lib/postgresql/data/
