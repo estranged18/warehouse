@@ -4,6 +4,8 @@ name: Elastic Beanstalk Deployment [master]
 on: 
   workflow_dispatch:
     branches: [ master]
+
+jobs:
   
   # deploy della nuova versione su Elastic Beanstalk   
   elastic-beanstalk-deployment:
@@ -16,7 +18,7 @@ on:
         run: mvn -Pprod install -DskipTests=true # evito di ripetere nuovamente i test
         # SCRIVERE LA VERSIONE GIUSTA PRIMA DEL PUSH SU GITHUB
       - name: Generate deployment package
-        run: zip -j v0.0.7-SNAP.zip Procfile target/warehouse-0.0.7-SNAPSHOT.jar
+        run: zip -j v0.0.8-SNAP.zip Procfile target/warehouse-0.0.8-SNAPSHOT.jar
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v18
         with:
@@ -24,7 +26,7 @@ on:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: warehouse
           environment_name: warehouse-dev
-          version_label: v0.0.7-SNAPSHOT
+          version_label: v0.0.8-SNAPSHOT
           region: eu-west-1
-          deployment_package: v0.0.7-SNAP.zip
+          deployment_package: v0.0.8-SNAP.zip
           wait_for_environment_recovery: 180 # tempo massimo di attesa: 3min
