@@ -16,8 +16,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with: # DA MODIFICARE OGNI RILASCIO!
-          tag_name: 0.0.8-SNAPSHOT
-          release_name: Warehouse 0.0.8-SNAPSHOT
+          tag_name: 0.0.9-SNAPSHOT
+          release_name: Warehouse 0.0.9-SNAPSHOT
           body: |
             Change in this release
             - removed AWS EB deploy from automatic CI and set it up as workflow_dispatch
@@ -30,7 +30,8 @@ jobs:
           java-version: '16'
           distribution: 'adopt'
       - name: Deploy package
-        run: mvn -B deploy
+        # -B means batch mode (non interactive mode)
+        run: mvn -B -Pprod deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  
           

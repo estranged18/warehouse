@@ -1,1 +1,1 @@
-web: java -jar -Dserver.port=$SERVER_PORT -Dspring.datasource.url=jdbc:postgresql://$RDS_HOSTNAME:$RDS_PORT/$RDS_DB_NAME -Dspring.datasource.username=$RDS_USERNAME -Dspring.datasource.password=$RDS_PASSWORD warehouse-0.0.8-SNAPSHOT.jar
+web: java -jar -Dserver.port=$SERVER_PORT -Dspring.datasource.url=jdbc:postgresql://$RDS_HOSTNAME:$RDS_PORT/$RDS_DB_NAME -Dspring.datasource.username=$RDS_USERNAME -Dspring.datasource.password=$RDS_PASSWORD warehouse-0.0.9-SNAPSHOT.jar
