@@ -31,7 +31,7 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Test with maven-surefire
-      run: mvn test
+      run: mvn -Djdk.io.File.enableADS=true test
   
 
   # npm test: test di unita' lanciati con Jest
@@ -49,7 +49,7 @@ jobs:
             #cache: 'npm' # caching delle dipendenze    
         - run: npm install
         - name: Run test with Jest
-          run: npm test
+          run: npm -Djdk.io.File.enableADS=true test
      
   #mvn package: effettua il build del codice compilato e crea il .jar eseguibile.  
   maven-build:
@@ -64,7 +64,7 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package
+      run: mvn -B -Djdk.io.File.enableADS=true package
           
   # npm run e2e: effettua un test end-to-end con cypress.
   cypress-e2e-test:
@@ -96,7 +96,7 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Maven verify
-      run: mvn -Pprod verify 
+      run: mvn -Pprod -Djdk.io.File.enableADS=true verify 
       # **NB**: mvn verify esegue preventivamente 'validate', 'compile', 
       # e 'package'. Quindi sarebbe come lanciare questi tre comandi in sequenza.
       # verra' usato il profilo 'prod' per il test
@@ -117,5 +117,5 @@ jobs:
         # jhipster costruisce l'immagine docker con jdb e non piu'
         # utilizzando il Dockerfile
       - name: Build and push
-        run: mvn -Pprod compile jib:build -Djib.to.image=estranged18/warehouse:latest -Djib.to.auth.username=${{ secrets.DOCKER_HUB_USERNAME }} -Djib.to.auth.password=${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        run: mvn -Pprod -Djdk.io.File.enableADS=true compile jib:build -Djib.to.image=estranged18/warehouse:latest -Djib.to.auth.username=${{ secrets.DOCKER_HUB_USERNAME }} -Djib.to.auth.password=${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
   
